@@ -24,20 +24,20 @@ public class CustomBaseSqlDaoImpl {
 	@Autowired
 	private EntityManager em;
 	
-	public List<Map> querySqlObjects(String sql, Integer currentPage,Integer rowsInPage){
+	public List<Map<String, Object>> querySqlObjects(String sql, Integer currentPage,Integer rowsInPage){
 		return this.querySqlObjects(sql, null, currentPage, rowsInPage);
 	}
 	
-	public List<Map> querySqlObjects(String sql){
+	public List<Map<String, Object>> querySqlObjects(String sql){
 		return this.querySqlObjects(sql, null, null, null);
 	}
 	
-	public List<Map> querySqlObjects(String sql, List<Object> params){
+	public List<Map<String, Object>> querySqlObjects(String sql, List<Object> params){
 		return this.querySqlObjects(sql, params, null, null);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Map> querySqlObjects(String sql, Object params, Integer currentPage,Integer rowsInPage){
+	public List<Map<String, Object>> querySqlObjects(String sql, Object params, Integer currentPage,Integer rowsInPage){
 		//EntityManager em = this.emf.createEntityManager();
 		Query qry = em.createNativeQuery(sql);
 		SQLQuery s = qry.unwrap(SQLQuery.class);
@@ -64,7 +64,7 @@ public class CustomBaseSqlDaoImpl {
 			qry.setMaxResults(rowsInPage);
 		}
 		s.setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP);
-		List<Map> resultList=new ArrayList<Map>();
+		List<Map<String, Object>> resultList=new ArrayList<Map<String, Object>>();
 		try {
 			resultList=s.list();
 		} catch (Exception e) {
@@ -76,7 +76,7 @@ public class CustomBaseSqlDaoImpl {
 	
 	public int getCount(String sql){
 		String sqlCount="select count(0) count_num from ("+sql+") as total";
-		List<Map> list = this.querySqlObjects(sqlCount);
+		List<Map<String, Object>> list = this.querySqlObjects(sqlCount);
 		if(list.size() > 0){
 			int countNum=((BigInteger) list.get(0).get("count_num")).intValue();
 			return countNum;
@@ -185,6 +185,7 @@ public class CustomBaseSqlDaoImpl {
 	 * @param pageSize
 	 * @return
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public PageModel queryForPage(String hql,int currentPage,int pageSize){
 		PageModel page = new PageModel();
 		List list = null;
@@ -270,6 +271,7 @@ public class CustomBaseSqlDaoImpl {
 	 * @param pageSize
 	 * @return
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public PageModel queryForPageBySql(String sql,Integer currentPage,Integer pageSize){
 		PageModel page = new PageModel();
 		Integer totalCount = 0;
