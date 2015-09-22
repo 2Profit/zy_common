@@ -15,7 +15,7 @@ public class ResultDto<T>{
 	public static final String NO_SESSION_CODE = "100";
 	public static final String NO_SESSION_MESSAGE = "session不存在,重新登录";
 
-	private boolean success;
+	private boolean success = true;
 	private String code;
 	private String message;
 	private List<T> list;//不分页集合
