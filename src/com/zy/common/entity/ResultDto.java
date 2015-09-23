@@ -18,6 +18,7 @@ public class ResultDto<T>{
 	private boolean success = true;
 	private String code;
 	private String message;
+	private T model;
 	private List<T> list;//不分页集合
 	private PageModel<T> pageModel;//分页集合
 	
@@ -38,6 +39,12 @@ public class ResultDto<T>{
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public T getModel() {
+		return model;
+	}
+	public void setModel(T model) {
+		this.model = model;
 	}
 	public List<T> getList() {
 		return list;
