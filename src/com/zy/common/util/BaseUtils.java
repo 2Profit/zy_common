@@ -41,4 +41,15 @@ public class BaseUtils {
 		return getCharAndNumr(8);
 	}
 	
+	public static String getNumr(int length){
+		String val = "";
+		Random random = new Random();
+		
+		for(int i = 0; i < length; i++){
+			val += String.valueOf(random.nextInt(10));
+		}
+		
+		return val;
+	}
+	
 }
