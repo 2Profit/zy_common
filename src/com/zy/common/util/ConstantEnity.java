@@ -19,6 +19,10 @@ public class ConstantEnity {
 		this.value = value;
 	}
 
+	public Integer getIntKey(){
+		return (int) key;
+	}
+	
 	public Object getKey() {
 		return key;
 	}
