@@ -231,17 +231,23 @@ public class CustomBaseSqlDaoImpl {
 		Query query = em.createQuery(hql);
 		
 		try {
-			for(Map.Entry<String,Object> entry: params.entrySet()){
-				query.setParameter(entry.getKey(), entry.getValue());
+			if(params != null){
+				for(Map.Entry<String,Object> entry: params.entrySet()){
+					query.setParameter(entry.getKey(), entry.getValue());
+				}
 			}
+			
 			query.setMaxResults(pageSize);
 			query.setFirstResult((currentPage-1)*pageSize);
 			list = query.getResultList();
 			
 			Query queryTotal = em.createQuery(hql);
-			for(Map.Entry<String,Object> entry: params.entrySet()){
-				queryTotal.setParameter(entry.getKey(), entry.getValue());
+			if(params != null){
+				for(Map.Entry<String,Object> entry: params.entrySet()){
+					queryTotal.setParameter(entry.getKey(), entry.getValue());
+				}
 			}
+			
 			List<Object> totlaList = queryTotal.getResultList(); 
 			totalCount = (totlaList == null) ? 0 : totlaList.size();
 			if(totalCount % pageSize == 0){
