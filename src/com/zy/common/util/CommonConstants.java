@@ -11,12 +11,14 @@ import java.util.List;
 public class CommonConstants {
 
 	//证件类型
-	public static final ConstantEnity cardTypeSfz = new ConstantEnity(1, "身份证号");
+	public static final ConstantEnity cardTypeSfz = new ConstantEnity(0, "身份证");
+	public static final ConstantEnity cardTypeHz = new ConstantEnity(1, "护照");
 	
 	public static List<ConstantEnity> getCardTypes(){
 		List<ConstantEnity> list = new ArrayList<ConstantEnity>();
 		
 		list.add(cardTypeSfz);
+		list.add(cardTypeHz);
 		
 		return list;
 	}

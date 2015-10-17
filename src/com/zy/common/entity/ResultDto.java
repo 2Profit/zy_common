@@ -14,6 +14,7 @@ public class ResultDto<T>{
 	
 	public static final String NO_SESSION_CODE = "100";
 	public static final String NO_SESSION_MESSAGE = "session不存在,重新登录";
+	public static final String SERVER_ERROR_CODE = "500";//服务器内部错误
 
 	private boolean success = true;
 	private String code;
