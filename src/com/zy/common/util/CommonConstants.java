@@ -45,9 +45,9 @@ public class CommonConstants {
 	}
 	
 	//提案状态
-	public static final ConstantEnity proposalStatusDefault = new ConstantEnity(0, "未处理");
+	public static final ConstantEnity proposalStatusDefault = new ConstantEnity(0, "待审批");
 	public static final ConstantEnity proposalStatusPass = new ConstantEnity(1, "通过");
-	public static final ConstantEnity proposalStausCancel = new ConstantEnity(2, "取消");
+	public static final ConstantEnity proposalStausCancel = new ConstantEnity(2, "拒绝");
 	
 	public static final List<ConstantEnity> getProposalStatus(){
 		List<ConstantEnity> list = new ArrayList<ConstantEnity>();
