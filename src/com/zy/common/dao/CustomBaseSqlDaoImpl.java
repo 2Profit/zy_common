@@ -414,4 +414,22 @@ public class CustomBaseSqlDaoImpl {
 		return count;
 	}
 	
+
+	public int executeSql(String sql, List<Object> params){
+		try {
+			Query query = em.createNativeQuery(sql);
+			if(params != null && !params.isEmpty()){
+				for(int i = 0, size = params.size(); i < size; i++){
+					query.setParameter(i+1, params.get(i));
+				}
+			}
+			return query.executeUpdate();
+		} finally {
+			if(em != null){
+				em.close();
+			}
+		}
+	}
+	
+	
 }
